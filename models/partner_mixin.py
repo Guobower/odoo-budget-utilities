@@ -3,7 +3,6 @@
 from odoo import models, fields, api, _
 
 from odoo.exceptions import ValidationError
-from odoo.addons.tfao.models.utilities import choices_tuple, _set_reference_no
 
 # TODO MAKE TEST
 class PartnerMixin(models.AbstractModel):
