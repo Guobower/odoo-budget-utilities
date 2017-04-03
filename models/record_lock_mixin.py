@@ -41,8 +41,12 @@ class RecordLockMixin(models.AbstractModel):
             raise ValidationError('Record is Locked')
         return super(RecordLockMixin, self).write(values)
 
+    @api.multi
+    def unlink(self):
+        if self.is_record_lock and not self.user_has_groups('base.group_system'):
+            raise ValidationError('Record is Locked')
+        return super(RecordLockMixin, self).unlink()
 
-    # CONSTRAINS
     # ----------------------------------------------------------
 
     # POLYMORPH FUNCTIONS

@@ -72,7 +72,7 @@ class PartnerMixin(models.AbstractModel):
             partner_vals = dict()
             for i in related_fields:
                 partner_vals[i] = values.pop(i, False)
-            partner_vals.update(lang=self.user.lang)
+            partner_vals.update(lang=self.env.user.lang)
             partner_id = self.partner_id.create(partner_vals)
             values['partner_id'] = partner_id.id
 
