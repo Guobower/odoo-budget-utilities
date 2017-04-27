@@ -1,5 +1,24 @@
 # -*- coding: utf-8 -*-
 import math
+from math import log10, floor
+
+
+def num_to_shorthand(num, ends=None):
+    """
+    Converts Number to short human readable numbers 
+    """
+    if ends is None:
+        ends = ["", "K", "M", "B", "T"]
+
+    num = int(num)
+    str_num = str(num)
+    index = int(floor(log10(num)) / 3)
+    letter = ends[index]
+
+    digit = str_num[0:len(str_num) - index * 3]
+
+    return '{}{}'.format(digit, letter)
+
 
 def is_close(a, b, rel_tol=1e-09, abs_tol=0.0):
     '''
@@ -26,13 +45,15 @@ def is_close(a, b, rel_tol=1e-09, abs_tol=0.0):
     # main comparator
     return abs(a - b) <= max(rel_tol * max(abs(a), abs(b)), abs_tol)
 
+
 def choices_tuple(choices, is_sorted=True):
     choices = [(i.lower(), i.upper()) for i in choices]
 
     if is_sorted:
-        return sorted(choices, key = lambda tup: tup[0])
+        return sorted(choices, key=lambda tup: tup[0])
 
     return choices
+
 
 # MISC FUNCTIONS
 # --------------------------------------------------------------------------------------------------
@@ -44,8 +65,8 @@ def int_to_roman(input):
         raise TypeError("expected integer, got %s" % type(input))
     if not 0 < input < 4000:
         raise ValueError("Argument must be between 1 and 3999")
-    ints = (1000, 900,  500, 400, 100,  90, 50,  40, 10,  9,   5,  4,   1)
-    nums = ('M',  'CM', 'D', 'CD','C', 'XC','L','XL','X','IX','V','IV','I')
+    ints = (1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
+    nums = ('M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I')
     result = []
     for i in range(len(ints)):
         count = int(input / ints[i])
@@ -53,3 +74,27 @@ def int_to_roman(input):
         input -= ints[i] * count
     return ''.join(result)
 
+
+import unittest
+
+class TestStringMethods(unittest.TestCase):
+    def test_upper(self):
+
+        numbers = [
+            (1, '1'),
+            (1.0, '1'),
+            (11, '11'),
+            (11.35223, '11'),
+            (111, '111'),
+            (1111, '1K'),
+            (11111, '11K'),
+            (111111, '111K'),
+            (1111111, '1M'),
+        ]
+
+        for num in numbers:
+            self.assertEqual(num_to_shorthand(num[0]), num[1])
+
+
+if __name__ == '__main__':
+    unittest.main()
