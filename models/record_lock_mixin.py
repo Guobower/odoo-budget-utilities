@@ -4,6 +4,7 @@ from odoo import models, fields, api, _
 
 from odoo.exceptions import ValidationError
 
+
 class RecordLockMixin(models.AbstractModel):
     _name = 'record.lock.mixin'
     _description = "Record Lock Mixin"
@@ -47,7 +48,7 @@ class RecordLockMixin(models.AbstractModel):
             raise ValidationError('Record is Locked')
         return super(RecordLockMixin, self).unlink()
 
-    # ----------------------------------------------------------
+        # ----------------------------------------------------------
 
-    # POLYMORPH FUNCTIONS
-    # ----------------------------------------------------------
+        # POLYMORPH FUNCTIONS
+        # ----------------------------------------------------------

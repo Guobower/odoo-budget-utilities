@@ -55,8 +55,18 @@ def choices_tuple(choices, is_sorted=True):
     return choices
 
 
-# MISC FUNCTIONS
-# --------------------------------------------------------------------------------------------------
+def odoo_to_pandas_list(orm_query=None, columns=list()):
+    """
+    Convert odoo query to list if dictionary readabloe to pandas   
+    """
+    columns = columns if columns else orm_query.fields_get_keys()
+    data = []
+    for row in orm_query:
+        row_data = {}
+        for column in columns:
+            row_data[column] = row.mapped(column)[0]
+        data.append(row_data)
+    return data
 
 def int_to_roman(input):
     """ Convert an integer to a Roman numeral. """
@@ -77,9 +87,9 @@ def int_to_roman(input):
 
 import unittest
 
+
 class TestStringMethods(unittest.TestCase):
     def test_upper(self):
-
         numbers = [
             (1, '1'),
             (1.0, '1'),
