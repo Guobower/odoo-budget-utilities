@@ -7,11 +7,11 @@
     'description': """
 Utilities
 ==============================
- - record_lock_mixin - abstractModelMixin for locking a record
- - num_to_shorthand - function converting number to shorthand (eg. 1000 -> 1K)
- - choices_tuple - create a tuple of pairs with a given list
- - odoo_to_pandas_list - odoo query to panda list
- - int_to_roman - convert integer to roman numeral
+- record_lock_mixin - abstractModelMixin for locking a record
+- num_to_shorthand - function converting number to shorthand (eg. 1000 -> 1K)
+- choices_tuple - create a tuple of pairs with a given list
+- odoo_to_pandas_list - odoo query to panda list
+- int_to_roman - convert integer to roman numeral
     """,
     'category': 'TBPC Budget',
     'website': "https://github.com/mpdevilleres",
