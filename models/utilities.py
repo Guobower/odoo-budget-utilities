@@ -11,7 +11,9 @@ def num_to_shorthand(num, ends=None):
 
     num = int(num)
     str_num = str(num)
-    index = int(floor(log10(num)) / 3)
+
+    index = 0 if not num else int(floor(log10(abs(num))) / 3)
+
     letter = ends[index]
 
     digit = str_num[0:len(str_num) - index * 3]
